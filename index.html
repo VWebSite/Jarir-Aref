@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عارف الصبري | مندوب مبيعات - شركة جرير للتسويق</title>
+    
+    <!-- استيراد خط تجوال (Tajawal) من Google Fonts لدعم اللغة العربية بشكل أنيق -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- مكتبة Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- مكتبة Tailwind CSS للتنسيق المتجاوب -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        jarir: {
+                            dark: '#006838',      // الأخضر الداكن لهوية جرير
+                            darker: '#004d29',    // درجة أغمق للتأثيرات
+                            light: '#8DC63F',     // الأخضر الفاتح
+                            accent: '#E31E24',    // لمسة حمراء مستوحاة من العلامة
+                            bg: '#F4F7F5'         // خلفية هادئة مريحة للعين
+                        }
+                    },
+                    boxShadow: {
+                        'card': '0 20px 50px -12px rgba(0, 104, 56, 0.15)',
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* تنسيقات إضافية لضمان التوسيط المثالي وتخصيص شريط التمرير */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #F4F7F5;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 104, 56, 0.06) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(141, 198, 63, 0.08) 0px, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 1.5rem 1rem;
+        }
+
+        /* إخفاء شريط التمرير الأفقي لأزرار الأقسام مع إبقاء التمرير سلساً */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* شريط تمرير أنيق لقائمة المنتجات */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #006838;
+        }
+
+        /* حركة ظهور الإشعار (Toast) */
+        @keyframes slideUp {
+            from { transform: translate(-50%, 100%); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
+        }
+        .toast-show {
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-jarir-dark selection:text-white">
+
+    <!-- الحاوية الرئيسية للبطاقة الرقمية متمركزة في منتصف الشاشة -->
+    <main class="w-full max-w-lg bg-white rounded-3xl shadow-card border border-slate-100 overflow-hidden my-auto transition-all duration-300">
+        
+        <!-- 1. الترويسة العلوية وهوية شركة جرير للتسويق -->
+        <header class="relative bg-gradient-to-bl from-jarir-dark via-[#005930] to-jarir-darker pt-8 pb-20 px-6 text-center text-white overflow-hidden">
+            <!-- زخارف هندسية خفيفة في الخلفية -->
+            <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/5 blur-xl"></div>
+            <div class="absolute -bottom-10 -left-10 w-44 h-44 rounded-full bg-jarir-light/15 blur-xl"></div>
+            
+            <!-- شريط علوي يحمل اسم الشركة وشعارها -->
+            <div class="relative z-10 inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full shadow-sm">
+                <span class="w-2.5 h-2.5 rounded-full bg-jarir-accent animate-pulse"></span>
+                <span class="text-xs sm:text-sm font-bold tracking-wide text-white">شركة جرير للتسويق</span>
+                <span class="text-white/40">|</span>
+                <span class="text-[11px] sm:text-xs font-medium text-jarir-light tracking-wider uppercase" dir="ltr">Jarir Marketing Co.</span>
+            </div>
+        </header>
+
+        <!-- 2. قسم الصورة الشخصية والبيانات الأساسية -->
+        <section class="relative px-6 pb-6 text-center -mt-16 z-10">
+            <!-- إطار الصورة الشخصية الدائري -->
+            <div class="relative inline-block mx-auto mb-4">
+                <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-full p-1.5 bg-gradient-to-tr from-jarir-dark via-jarir-light to-jarir-accent shadow-lg">
+                    <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 border-2 border-white">
+                        <!-- الصورة المرفقة مع صورة بديلة تلقائية في حال عدم العثور على الملف محلياً -->
+                        <img 
+                            src="face.jpeg" 
+                            alt="عارف الصبري - مندوب مبيعات شركة جرير للتسويق"
+                            onerror="this.onerror=null; this.src='https://placehold.co/300x300/006838/FFFFFF?text=عارف+الصبري';"
+                            class="w-full h-full object-cover object-center"
+                        >
+                    </div>
+                </div>
+                <!-- شارة التحقق -->
+                <div class="absolute bottom-1.5 right-1.5 w-8 h-8 rounded-full bg-jarir-dark text-white border-2 border-white flex items-center justify-center shadow-md" title="ممثل مبيعات معتمد">
+                    <i class="fa-solid fa-check text-xs"></i>
+                </div>
+            </div>
+
+            <!-- الاسم والمسمى الوظيفي -->
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-1">عارف الصبري</h1>
+            <div class="inline-flex items-center justify-center gap-2 text-jarir-dark font-bold text-base sm:text-lg mb-2">
+                <i class="fa-solid fa-briefcase text-sm text-jarir-light"></i>
+                <span>مندوب مبيعات</span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto leading-relaxed">
+                مبيعات الجملة والشركات والمدارس • توفير كافة المستلزمات المكتبية والمدرسية والحلول المتكاملة
+            </p>
+        </section>
+
+        <!-- 3. منطقة التواصل السريع (مفصولة بوضوح لتجنب الضغط الخاطئ) -->
+        <section class="px-6 space-y-5">
+            
+            <!-- المجموعة الأولى: الاتصال المباشر والواتساب -->
+            <div class="grid grid-cols-2 gap-3">
+                <a href="tel:+966583000907" class="group flex items-center justify-center gap-2.5 bg-jarir-dark hover:bg-jarir-darker text-white font-bold py-3.5 px-4 rounded-2xl shadow-soft transition-all duration-200 active:scale-95">
+                    <i class="fa-solid fa-phone-volume text-base group-hover:rotate-12 transition-transform"></i>
+                    <span class="text-sm sm:text-base">اتصال مباشر</span>
+                </a>
+                
+                <a href="https://wa.me/966583000907" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1fb858] text-white font-bold py-3.5 px-4 rounded-2xl shadow-soft transition-all duration-200 active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-xl group-hover:scale-110 transition-transform"></i>
+                    <span class="text-sm sm:text-base">واتساب مباشر</span>
+                </a>
+            </div>
+
+            <!-- فاصل بصري واضح -->
+            <div class="border-t border-slate-100"></div>
+
+            <!-- المجموعة الثانية: بطاقة رقم الجوال مع زر النسخ المستقل -->
+            <div class="bg-slate-50/90 border border-slate-200/80 rounded-2xl p-3.5 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-10 h-10 rounded-xl bg-jarir-dark/10 text-jarir-dark flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-mobile-screen-button text-lg"></i>
+                    </div>
+                    <div class="text-right truncate">
+                        <span class="block text-[11px] font-medium text-slate-400">رقم الجوال المباشر</span>
+                        <span class="block text-sm sm:text-base font-bold text-slate-800 tracking-wide" dir="ltr">+966 58 300 0907</span>
+                    </div>
+                </div>
+                <button type="button" onclick="copyToClipboard('+966583000907', 'تم نسخ رقم الجوال بنجاح')" class="shrink-0 flex items-center gap-1.5 bg-white hover:bg-jarir-dark text-slate-700 hover:text-white border border-slate-200 hover:border-jarir-dark text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-sm transition-all active:scale-95 cursor-pointer" title="نسخ رقم الجوال">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>نسخ</span>
+                </button>
+            </div>
+
+            <!-- المجموعة الثالثة: بطاقة البريد الإلكتروني المستقلة (إرسال + نسخ) -->
+            <div class="bg-slate-50/90 border border-slate-200/80 rounded-2xl p-3.5 flex items-center justify-between gap-3">
+                <a href="mailto:alsapri@jarirbookstore.com" class="flex items-center gap-3 min-w-0 group flex-1" title="إرسال بريد إلكتروني">
+                    <div class="w-10 h-10 rounded-xl bg-jarir-accent/10 text-jarir-accent group-hover:bg-jarir-accent group-hover:text-white transition-colors flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-envelope text-base"></i>
+                    </div>
+                    <div class="text-right truncate">
+                        <span class="block text-[11px] font-medium text-slate-400">البريد الإلكتروني (اضغط للمراسلة)</span>
+                        <span class="block text-xs sm:text-sm font-bold text-slate-800 group-hover:text-jarir-dark transition-colors truncate" dir="ltr">alsapri@jarirbookstore.com</span>
+                    </div>
+                </a>
+                <button type="button" onclick="copyToClipboard('alsapri@jarirbookstore.com', 'تم نسخ البريد الإلكتروني بنجاح')" class="shrink-0 flex items-center gap-1.5 bg-white hover:bg-jarir-dark text-slate-700 hover:text-white border border-slate-200 hover:border-jarir-dark text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-sm transition-all active:scale-95 cursor-pointer" title="نسخ البريد الإلكتروني">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>نسخ</span>
+                </button>
+            </div>
+
+            <!-- زر حفظ جهة الاتصال (Download vCard .vcf) -->
+            <div class="pt-1">
+                <button type="button" onclick="downloadVCard()" class="w-full flex items-center justify-center gap-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 px-5 rounded-2xl shadow-md transition-all duration-200 active:scale-[0.98] cursor-pointer">
+                    <i class="fa-solid fa-address-card text-jarir-light text-lg"></i>
+                    <span class="text-sm sm:text-base">حفظ جهة الاتصال في الهاتف (vCard)</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- فاصل بارز بين البطاقة الشخصية وقسم الكتالوج -->
+        <div class="my-7 border-t-2 border-dashed border-slate-200/80 relative">
+            <span class="absolute left-1/2 -top-3 -translate-x-1/2 bg-white px-3 text-xs font-bold text-jarir-dark">
+                <i class="fa-solid fa-book-open ml-1 text-jarir-light"></i> كتالوج المنتجات
+            </span>
+        </div>
+
+        <!-- 4. قسم الكتالوج التفاعلي داخل البطاقة -->
+        <section class="px-6 pb-8">
+            <div class="bg-gradient-to-br from-[#F8FAF9] to-[#F1F6F3] border border-jarir-dark/15 rounded-2xl p-4 sm:p-5">
+                
+                <!-- عنوان قسم الكتالوج -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                    <div>
+                        <h2 class="text-base sm:text-lg font-extrabold text-jarir-dark leading-snug">
+                            دليل المستلزمات المدرسية والمكتبية 2026
+                        </h2>
+                        <p class="text-[11px] font-medium text-slate-500 mt-0.5" dir="ltr">
+                            Jarir Marketing Co. - School & Office Supplies Catalogue 2026
+                        </p>
+                    </div>
+                    
+                    <!-- زر استعراض / تحميل ملف الكتالوج الكامل PDF -->
+                    <a href="Jarir_Catalogue_2026.pdf" target="_blank" onclick="handlePdfClick(event)" class="inline-flex items-center justify-center gap-1.5 bg-white hover:bg-jarir-dark text-jarir-dark hover:text-white border border-jarir-dark/30 text-xs font-bold py-2 px-3 rounded-xl shadow-sm transition-all shrink-0">
+                        <i class="fa-solid fa-file-pdf text-jarir-accent"></i>
+                        <span>الكتالوج الكامل PDF</span>
+                    </a>
+                </div>
+
+                <!-- شريط البحث الذكي -->
+                <div class="relative mb-3.5">
+                    <input 
+                        type="text" 
+                        id="catalogSearch" 
+                        oninput="filterCatalog()" 
+                        placeholder="ابحث باسم الصنف أو رقم الصنف (مثال: 461493 أو ورق تصوير)..." 
+                        class="w-full bg-white border border-slate-200 focus:border-jarir-dark focus:ring-2 focus:ring-jarir-dark/15 rounded-xl py-2.5 pr-10 pl-9 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-all"
+                    >
+                    <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <button type="button" id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs cursor-pointer">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- أزرار التصفية حسب الأقسام الرئيسية الـ 12 من الكتالوج -->
+                <div id="categoryFilters" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 mb-3">
+                    <!-- يتم توليد الأزرار ديناميكياً عبر JavaScript -->
+                </div>
+
+                <!-- عداد النتائج المعروضة -->
+                <div class="flex items-center justify-between text-[11px] text-slate-500 mb-2.5 px-1">
+                    <span id="resultsCount">جاري تحميل الأصناف...</span>
+                    <span>اطلب مباشرة عبر واتساب <i class="fa-brands fa-whatsapp text-[#25D366]"></i></span>
+                </div>
+
+                <!-- قائمة المنتجات المعروضة -->
+                <div id="productsList" class="space-y-2.5 max-h-80 overflow-y-auto custom-scrollbar pr-1">
+                    <!-- يتم توليد بطاقات المنتجات ديناميكياً عبر JavaScript -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- تذييل البطاقة -->
+        <footer class="bg-slate-50 border-t border-slate-100 py-4 px-6 text-center">
+            <p class="text-[11px] text-slate-400 font-medium">
+                © 2026 شركة جرير للتسويق (Jarir Marketing Co.) • جميع الحقوق محفوظة
+            </p>
+        </footer>
+    </main>
+
+    <!-- إشعار بصري منبثق (Toast Notification) -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden items-center gap-2.5 bg-slate-900 text-white text-xs sm:text-sm font-bold px-5 py-3 rounded-full shadow-xl border border-white/10">
+        <i class="fa-solid fa-circle-check text-jarir-light text-base"></i>
+        <span id="toastMessage">تم النسخ بنجاح</span>
+    </div>
+
+    <script>
+        // =========================================================================
+        // 1. بيانات أقسام ومنتجات كتالوج جرير للمستلزمات المدرسية والمكتبية 2026
+        // =========================================================================
+        const catalogCategories = [
+            "الكل",
+            "الورق واللواصق",
+            "الدفاتر والمذكرات اللاصقة",
+            "الأظرف وحلول التغليف",
+            "أطقم المكاتب والتنظيم المكتبي",
+            "الملفات وأغلفة التقارير",
+            "أدوات الكتابة",
+            "الأجهزة المكتبية ولوازمها",
+            "دفاتر المحاسبة والتسجيل",
+            "لوازم الرسامين والمهندسين",
+            "ألعاب الأطفال والصلصال",
+            "حافظات الطعام وقوارير الماء",
+            "شنط المدرسة"
+        ];
+
+        const catalogProducts = [
+            // الورق واللواصق
+            { id: "461493", name: "ورق تصوير وطباعة روكو A4 (80 جم - 500 ورقة)", category: "الورق واللواصق", unit: "رزمة / كرتون" },
+            { id: "512840", name: "ورق تصوير وطباعة متعدد الاستخدامات A3 (80 جم)", category: "الورق واللواصق", unit: "رزمة 500 ورقة" },
+            { id: "389210", name: "ملصقات عناوين وباركود بيضاء لاصقة A4 (روكو)", category: "الورق واللواصق", unit: "عبوة 100 ورقة" },
+            
+            // الدفاتر والمذكرات اللاصقة
+            { id: "548921", name: "دفتر سلك جامعي مقسم 5 مواضيع A4 (روكو)", category: "الدفاتر والمذكرات اللاصقة", unit: "حبة / درزن" },
+            { id: "410293", name: "مكعب ورق ملاحظات لاصقة ملونة 3×3 بوصة (بوست-إت / روكو)", category: "الدفاتر والمذكرات اللاصقة", unit: "عبوة 400 ورقة" },
+            { id: "498120", name: "دفتر ملاحظات بغلاف مقوى فاخر A5 مسطر", category: "الدفاتر والمذكرات اللاصقة", unit: "حبة" },
+
+            // الأظرف وحلول التغليف
+            { id: "320415", name: "أظرف مراسلات بيضاء ذاتية اللصق مقاس DL", category: "الأظرف وحلول التغليف", unit: "علبة 500 ظرف" },
+            { id: "320488", name: "أظرف بنية مقواة للمستندات مقاس A4 / C4", category: "الأظرف وحلول التغليف", unit: "علبة 250 ظرف" },
+            { id: "475112", name: "شريط تغليف لاصق شفاف عريض 48 مم × 100 ياردة", category: "الأظرف وحلول التغليف", unit: "شدة 6 لفات" },
+
+            // أطقم المكاتب والتنظيم المكتبي
+            { id: "531094", name: "طقم تنظيم مكتبي شبكي معدني أسود (7 قطع)", category: "أطقم المكاتب والتنظيم المكتبي", unit: "طقم كامل" },
+            { id: "482910", name: "حامل ملفات ومجلات مكتبي 3 أدراج متحركة", category: "أطقم المكاتب والتنظيم المكتبي", unit: "حبة" },
+            { id: "394022", name: "حامل شريط لاصق مكتبي ثقيل القاعدة (روكو)", category: "أطقم المكاتب والتنظيم المكتبي", unit: "حبة" },
+
+            // الملفات وأغلفة التقارير
+            { id: "441209", name: "ملف أرشيف بوكس فايل (Box File) كعب 8 سم A4", category: "الملفات وأغلفة التقارير", unit: "حبة / كرتون" },
+            { id: "445890", name: "حافظة مستندات شفافة مثقبة (U-Shape / L-Shape) A4", category: "الملفات وأغلفة التقارير", unit: "عبوة 100 حبة" },
+            { id: "502311", name: "ملف عرض جيوب بلاستيكية داخلية (20 / 40 / 60 جيب)", category: "الملفات وأغلفة التقارير", unit: "حبة" },
+
+            // أدوات الكتابة
+            { id: "418750", name: "أقلام حبر جاف روكو (أزرق / أسود / أحمر) رأس 0.7 مم", category: "أدوات الكتابة", unit: "علبة 12 قلم" },
+            { id: "429011", name: "أقلام سبورة بيضاء قابلة للمسح رأس مشطوف (4 ألوان)", category: "أدوات الكتابة", unit: "طقم / علبة" },
+            { id: "435672", name: "أقلام تحديد فوسفورية (Highlighter) ألوان متنوعة", category: "أدوات الكتابة", unit: "طقم 6 ألوان" },
+
+            // الأجهزة المكتبية ولوازمها
+            { id: "560124", name: "آلة تقطيع وإتلاف الوثائق المكتبية (Cross-Cut)", category: "الأجهزة المكتبية ولوازمها", unit: "جهاز" },
+            { id: "558903", name: "جهاز تغليف حراري (Laminator) مقاس A3 / A4 + رولات", category: "الأجهزة المكتبية ولوازمها", unit: "جهاز" },
+            { id: "491025", name: "دباسة مكتبية معدنية ثقيلة + دبابيس 24/6 (روكو)", category: "الأجهزة المكتبية ولوازمها", unit: "حبة" },
+
+            // دفاتر المحاسبة والتسجيل
+            { id: "365410", name: "سجل وارد وصادر / دفتر قيد يومية مجلد A4", category: "دفاتر المحاسبة والتسجيل", unit: "حبة" },
+            { id: "365892", name: "دفتر سندات قبض / صرف مكربن ذاتياً (نسختين)", category: "دفاتر المحاسبة والتسجيل", unit: "دفتر" },
+            { id: "366104", name: "دفتر فواتير مبيعات مرقم ومكربن مقاس A5", category: "دفاتر المحاسبة والتسجيل", unit: "دفتر" },
+
+            // لوازم الرسامين والمهندسين
+            { id: "572340", name: "طقم أدوات هندسية معدنية متكامل داخل علبة (روكو)", category: "لوازم الرسامين والمهندسين", unit: "طقم" },
+            { id: "578912", name: "كراسة رسم وطباعة فنية ورق مقوى 180 جم A3", category: "لوازم الرسامين والمهندسين", unit: "كراسة" },
+            { id: "581045", name: "ألوان خشبية ومائية وأكريليك احترافية (24 / 36 لون)", category: "لوازم الرسامين والمهندسين", unit: "علبة" },
+
+            // ألعاب الأطفال والصلصال
+            { id: "590112", name: "طقم صلصال تعليمي آمن للأطفال مع قوالب تشكيل", category: "ألعاب الأطفال والصلصال", unit: "عبوة" },
+            { id: "592408", name: "ألعاب تركيب ومكعبات تنمية الذكاء والمهارات", category: "ألعاب الأطفال والصلصال", unit: "علبة" },
+
+            // حافظات الطعام وقوارير الماء
+            { id: "601245", name: "حافظة طعام مدرسية مقسمة محكمة الإغلاق (خالية من BPA)", category: "حافظات الطعام وقوارير الماء", unit: "حبة" },
+            { id: "604890", name: "قارورة ماء رياضية ومدرسية معزولة 500 مل", category: "حافظات الطعام وقوارير الماء", unit: "حبة" },
+
+            // شنط المدرسة
+            { id: "615230", name: "حقيبة ظهر مدرسية طبية مبطنة متعددة الجيوب", category: "شنط المدرسة", unit: "حبة" },
+            { id: "618904", name: "طقم حقيبة مدرسية بعجلات ترولي (شنطة + حافظة طعام + مقلمة)", category: "شنط المدرسة", unit: "طقم 3 قطع" }
+        ];
+
+        let selectedCategory = "الكل";
+        const whatsappNumber = "966583000907";
+
+        // =========================================================================
+        // 2. تهيئة واجهة الكتالوج والتصفية عند تحميل الصفحة
+        // =========================================================================
+        document.addEventListener("DOMContentLoaded", () => {
+            renderCategoryButtons();
+            filterCatalog();
+        });
+
+        function renderCategoryButtons() {
+            const container = document.getElementById("categoryFilters");
+            container.innerHTML = catalogCategories.map(cat => {
+                const isActive = cat === selectedCategory;
+                return `
+                    <button 
+                        type="button"
+                        onclick="selectCategory('${cat}')"
+                        class="shrink-0 text-xs font-bold px-3.5 py-2 rounded-xl border transition-all cursor-pointer ${
+                            isActive 
+                            ? 'bg-jarir-dark text-white border-jarir-dark shadow-sm' 
+                            : 'bg-white text-slate-600 border-slate-200 hover:border-jarir-dark/40 hover:text-jarir-dark'
+                        }"
+                    >
+                        ${cat}
+                    </button>
+                `;
+            }).join("");
+        }
+
+        function selectCategory(category) {
+            selectedCategory = category;
+            renderCategoryButtons();
+            filterCatalog();
+        }
+
+        function clearSearch() {
+            const input = document.getElementById("catalogSearch");
+            input.value = "";
+            filterCatalog();
+            input.focus();
+        }
+
+        function filterCatalog() {
+            const searchInput = document.getElementById("catalogSearch");
+            const clearBtn = document.getElementById("clearSearchBtn");
+            const query = searchInput.value.trim().toLowerCase();
+
+            // إظهار أو إخفاء زر مسح البحث
+            if (query.length > 0) {
+                clearBtn.classList.remove("hidden");
+            } else {
+                clearBtn.classList.add("hidden");
+            }
+
+            const filtered = catalogProducts.filter(item => {
+                const matchesCategory = selectedCategory === "الكل" || item.category === selectedCategory;
+                const matchesQuery = 
+                    item.name.toLowerCase().includes(query) || 
+                    item.id.toLowerCase().includes(query) || 
+                    item.category.toLowerCase().includes(query);
+                return matchesCategory && matchesQuery;
+            });
+
+            renderProducts(filtered);
+        }
+
+        function renderProducts(products) {
+            const listContainer = document.getElementById("productsList");
+            const countLabel = document.getElementById("resultsCount");
+
+            countLabel.textContent = `عرض ${products.length} من أصل ${catalogProducts.length} صنف`;
+
+            if (products.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="bg-white border border-slate-200/80 rounded-xl p-6 text-center">
+                        <i class="fa-solid fa-box-open text-2xl text-slate-300 mb-2"></i>
+                        <p class="text-xs sm:text-sm font-bold text-slate-600">لم يتم العثور على أصناف مطابقة لبحثك</p>
+                        <p class="text-[11px] text-slate-400 mt-1">يمكنك التواصل مباشرة مع عارف الصبري للاستفسار عن أي صنف آخر في الكتالوج</p>
+                    </div>
+                `;
+                return;
+            }
+
+            listContainer.innerHTML = products.map(item => {
+                // تجهيز رسالة واتساب مسبقة تتضمن اسم المنتج ورقم الصنف
+                const message = `السلام عليكم أستاذ عارف الصبري،\nأرغب بالاستفسار وطلب تسعيرة للصنف التالي من كتالوج جرير 2026:\n• اسم الصنف: ${item.name}\n• رقم الصنف (Item No): ${item.id}\n• القسم: ${item.category}`;
+                const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+                return `
+                    <div class="bg-white hover:border-jarir-dark/40 border border-slate-200/80 rounded-xl p-3 transition-all shadow-2xs flex items-center justify-between gap-3">
+                        <div class="min-w-0 flex-1 text-right">
+                            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+                                <span class="inline-flex items-center gap-1 bg-jarir-dark/10 text-jarir-dark text-[10px] font-extrabold px-2 py-0.5 rounded-md" dir="ltr">
+                                    #${item.id}
+                                </span>
+                                <span class="text-[10px] font-medium text-slate-400 truncate">
+                                    ${item.category}
+                                </span>
+                            </div>
+                            <h3 class="text-xs sm:text-sm font-bold text-slate-800 leading-snug">
+                                ${item.name}
+                            </h3>
+                            <span class="inline-block text-[10px] text-slate-500 mt-0.5">
+                                وحدة التعبئة: ${item.unit}
+                            </span>
+                        </div>
+                        
+                        <a 
+                            href="${waLink}" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="shrink-0 inline-flex items-center gap-1.5 bg-[#25D366]/10 hover:bg-[#25D366] text-[#128C7E] hover:text-white font-bold text-xs py-2 px-3 rounded-xl transition-colors"
+                            title="اطلب هذا الصنف عبر واتساب"
+                        >
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span>اطلب</span>
+                        </a>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        // =========================================================================
+        // 3. وظائف النسخ، الإشعارات، وتوليد ملف جهة الاتصال (vCard .vcf)
+        // =========================================================================
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            const toastMsg = document.getElementById("toastMessage");
+            
+            toastMsg.textContent = message;
+            toast.classList.remove("hidden");
+            toast.classList.add("flex", "toast-show");
+
+            clearTimeout(window.toastTimeout);
+            window.toastTimeout = setTimeout(() => {
+                toast.classList.add("hidden");
+                toast.classList.remove("flex", "toast-show");
+            }, 3000);
+        }
+
+        function copyToClipboard(text, successMessage) {
+            // استخدام الطريقة المتوافقة مع جميع المتصفحات وإطارات iFrame
+            const tempInput = document.createElement("textarea");
+            tempInput.value = text;
+            tempInput.style.position = "fixed";
+            tempInput.style.opacity = "0";
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999);
+
+            try {
+                document.execCommand("copy");
+                showToast(successMessage);
+            } catch (err) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(() => showToast(successMessage));
+                }
+            } finally {
+                document.body.removeChild(tempInput);
+            }
+        }
+
+        function downloadVCard() {
+            // بناء محتوى ملف vCard القياسي (الإصدار 3.0) بترميز UTF-8 لدعم اللغة العربية
+            const vCardLines = [
+                "BEGIN:VCARD",
+                "VERSION:3.0",
+                "N;CHARSET=UTF-8:الصبري;عارف;;;",
+                "FN;CHARSET=UTF-8:عارف الصبري - شركة جرير للتسويق",
+                "ORG;CHARSET=UTF-8:شركة جرير للتسويق (Jarir Marketing Co.)",
+                "TITLE;CHARSET=UTF-8:مندوب مبيعات",
+                "TEL;TYPE=CELL,VOICE:+966583000907",
+                "EMAIL;TYPE=PREF,INTERNET:alsapri@jarirbookstore.com",
+                "NOTE;CHARSET=UTF-8:مندوب مبيعات - شركة جرير للتسويق | المستلزمات المدرسية والمكتبية",
+                "END:VCARD"
+            ];
+
+            const vCardContent = vCardLines.join("\r\n");
+            const blob = new Blob(["\uFEFF" + vCardContent], { type: "text/vcard;charset=utf-8;" });
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", "Aref_AlSapri_Jarir.vcf");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+
+            showToast("تم تحميل ملف جهة الاتصال (vCard) بنجاح");
+        }
+
+        function handlePdfClick(event) {
+            // تنبيه لطيف في حال فتح الصفحة محلياً قبل وضع ملف PDF في مجلد GitHub
+            showToast("جاري فتح دليل المستلزمات المدرسية والمكتبية 2026...");
+        }
+    </script>
+</body>
+</html>
