@@ -26,14 +26,16 @@
                         jarir: {
                             dark: '#006838',      // الأخضر الداكن لهوية جرير
                             darker: '#004d29',    // درجة أغمق للتأثيرات
-                            light: '#8DC63F',     // الأخضر الفاتح
+                            deep: '#07140e',      // خلفية داكنة عميقة مريحة للعين
+                            card: '#0d1f17',      // لون البطاقة الداكن المخضر
+                            surface: '#132b20',   // لون البطاقات الداخلية
+                            light: '#8DC63F',     // الأخضر الفاتح لهوية جرير
                             accent: '#E31E24',    // لمسة حمراء مستوحاة من العلامة
-                            bg: '#F4F7F5'         // خلفية هادئة مريحة للعين
                         }
                     },
                     boxShadow: {
-                        'card': '0 20px 50px -12px rgba(0, 104, 56, 0.15)',
-                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'card': '0 25px 60px -15px rgba(0, 0, 0, 0.75), 0 0 35px -5px rgba(0, 104, 56, 0.25)',
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.35)',
                     }
                 }
             }
@@ -41,13 +43,14 @@
     </script>
 
     <style>
-        /* تنسيقات إضافية لضمان التوسيط المثالي وتخصيص شريط التمرير */
+        /* تنسيقات إضافية لضمان التوسيط المثالي وتخصيص شريط التمرير بالوضع الداكن المخضر */
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: #F4F7F5;
+            background-color: #07140e;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(0, 104, 56, 0.06) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(141, 198, 63, 0.08) 0px, transparent 50%);
+                radial-gradient(at 15% 10%, rgba(0, 104, 56, 0.28) 0px, transparent 55%),
+                radial-gradient(at 85% 90%, rgba(141, 198, 63, 0.14) 0px, transparent 55%),
+                linear-gradient(160deg, #06110c 0%, #0a1c14 50%, #050e0a 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -65,20 +68,20 @@
             scrollbar-width: none;
         }
 
-        /* شريط تمرير أنيق لقائمة المنتجات */
+        /* شريط تمرير أنيق لقائمة المنتجات متوافق مع الخلفية الداكنة */
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f5f9;
+            background: #0b1913;
             border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
+            background: #1f4735;
             border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #006838;
+            background: #8DC63F;
         }
 
         /* حركة ظهور الإشعار (Toast) */
@@ -91,22 +94,21 @@
         }
     </style>
 </head>
-<body class="text-slate-800 antialiased selection:bg-jarir-dark selection:text-white">
+<body class="text-slate-100 antialiased selection:bg-jarir-light selection:text-jarir-deep">
 
     <!-- الحاوية الرئيسية للبطاقة الرقمية متمركزة في منتصف الشاشة -->
-    <main class="w-full max-w-lg bg-white rounded-3xl shadow-card border border-slate-100 overflow-hidden my-auto transition-all duration-300">
+    <main class="w-full max-w-lg bg-jarir-card rounded-3xl shadow-card border border-emerald-800/40 overflow-hidden my-auto transition-all duration-300">
         
         <!-- 1. الترويسة العلوية وهوية شركة جرير للتسويق -->
-        <header class="relative bg-gradient-to-bl from-jarir-dark via-[#005930] to-jarir-darker pt-8 pb-20 px-6 text-center text-white overflow-hidden">
+        <header class="relative bg-gradient-to-bl from-jarir-dark via-[#00522c] to-[#082417] pt-8 pb-20 px-6 text-center text-white overflow-hidden border-b border-emerald-700/30">
             <!-- زخارف هندسية خفيفة في الخلفية -->
-            <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/5 blur-xl"></div>
-            <div class="absolute -bottom-10 -left-10 w-44 h-44 rounded-full bg-jarir-light/15 blur-xl"></div>
+            <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-jarir-light/10 blur-xl"></div>
+            <div class="absolute -bottom-10 -left-10 w-44 h-44 rounded-full bg-emerald-400/10 blur-xl"></div>
             
-            <!-- شريط علوي يحمل اسم الشركة وشعارها -->
-            <div class="relative z-10 inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full shadow-sm">
-                <span class="w-2.5 h-2.5 rounded-full bg-jarir-accent animate-pulse"></span>
+            <!-- شريط علوي يحمل اسم الشركة وشعارها (تمت إزالة النقطة الحمراء) -->
+            <div class="relative z-10 inline-flex items-center gap-2.5 bg-black/25 backdrop-blur-md border border-emerald-400/25 px-4 py-1.5 rounded-full shadow-sm">
                 <span class="text-xs sm:text-sm font-bold tracking-wide text-white">شركة جرير للتسويق</span>
-                <span class="text-white/40">|</span>
+                <span class="text-emerald-300/40">|</span>
                 <span class="text-[11px] sm:text-xs font-medium text-jarir-light tracking-wider uppercase" dir="ltr">Jarir Marketing Co.</span>
             </div>
         </header>
@@ -115,8 +117,8 @@
         <section class="relative px-6 pb-6 text-center -mt-16 z-10">
             <!-- إطار الصورة الشخصية الدائري -->
             <div class="relative inline-block mx-auto mb-4">
-                <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-full p-1.5 bg-gradient-to-tr from-jarir-dark via-jarir-light to-jarir-accent shadow-lg">
-                    <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 border-2 border-white">
+                <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-full p-1.5 bg-gradient-to-tr from-jarir-dark via-jarir-light to-emerald-400 shadow-lg">
+                    <div class="w-full h-full rounded-full overflow-hidden bg-jarir-surface border-2 border-jarir-card">
                         <!-- الصورة المرفقة مع صورة بديلة تلقائية في حال عدم العثور على الملف محلياً -->
                         <img 
                             src="face.jpeg" 
@@ -126,71 +128,72 @@
                         >
                     </div>
                 </div>
-                <!-- شارة التحقق -->
-                <div class="absolute bottom-1.5 right-1.5 w-8 h-8 rounded-full bg-jarir-dark text-white border-2 border-white flex items-center justify-center shadow-md" title="ممثل مبيعات معتمد">
-                    <i class="fa-solid fa-check text-xs"></i>
+                <!-- شارة التوثيق بنجمة زرقاء أنيقة -->
+                <div class="absolute bottom-1.5 right-1.5 w-8 h-8 rounded-full bg-gradient-to-tr from-sky-600 to-blue-500 text-white border-2 border-jarir-card flex items-center justify-center shadow-lg" title="حساب موثق">
+                    <i class="fa-solid fa-star text-xs drop-shadow-xs"></i>
                 </div>
             </div>
 
             <!-- الاسم والمسمى الوظيفي -->
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-1">عارف الصبري</h1>
-            <div class="inline-flex items-center justify-center gap-2 text-jarir-dark font-bold text-base sm:text-lg mb-2">
-                <i class="fa-solid fa-briefcase text-sm text-jarir-light"></i>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-0.5">عارف الصبري</h1>
+            <p class="text-xs sm:text-sm font-bold text-emerald-300/90 tracking-wider mb-2" dir="ltr">Aref Al-Sapri</p>
+            <div class="inline-flex items-center justify-center gap-2 text-jarir-light font-bold text-base sm:text-lg mb-2">
+                <i class="fa-solid fa-briefcase text-sm text-emerald-400"></i>
                 <span>مندوب مبيعات</span>
             </div>
-            <p class="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto leading-relaxed">
+            <p class="text-xs sm:text-sm text-slate-300/85 max-w-sm mx-auto leading-relaxed">
                 مبيعات الجملة والشركات والمدارس • توفير كافة المستلزمات المكتبية والمدرسية والحلول المتكاملة
             </p>
         </section>
 
         <!-- 3. منطقة التواصل السريع (مفصولة بوضوح لتجنب الضغط الخاطئ) -->
-        <section class="px-6 space-y-5">
+        <section class="px-6 space-y-4">
             
             <!-- المجموعة الأولى: الاتصال المباشر والواتساب -->
             <div class="grid grid-cols-2 gap-3">
-                <a href="tel:+966583000907" class="group flex items-center justify-center gap-2.5 bg-jarir-dark hover:bg-jarir-darker text-white font-bold py-3.5 px-4 rounded-2xl shadow-soft transition-all duration-200 active:scale-95">
-                    <i class="fa-solid fa-phone-volume text-base group-hover:rotate-12 transition-transform"></i>
+                <a href="tel:+966583000907" class="group flex items-center justify-center gap-2.5 bg-jarir-dark hover:bg-[#007a42] border border-emerald-500/30 text-white font-bold py-3.5 px-4 rounded-2xl shadow-soft transition-all duration-200 active:scale-95">
+                    <i class="fa-solid fa-phone-volume text-base text-jarir-light group-hover:rotate-12 transition-transform"></i>
                     <span class="text-sm sm:text-base">اتصال مباشر</span>
                 </a>
                 
-                <a href="https://wa.me/966583000907" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1fb858] text-white font-bold py-3.5 px-4 rounded-2xl shadow-soft transition-all duration-200 active:scale-95">
+                <a href="https://wa.me/966583000907" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-center gap-2.5 bg-[#1fa851] hover:bg-[#25D366] text-white font-bold py-3.5 px-4 rounded-2xl shadow-soft transition-all duration-200 active:scale-95">
                     <i class="fa-brands fa-whatsapp text-xl group-hover:scale-110 transition-transform"></i>
                     <span class="text-sm sm:text-base">واتساب مباشر</span>
                 </a>
             </div>
 
             <!-- فاصل بصري واضح -->
-            <div class="border-t border-slate-100"></div>
+            <div class="border-t border-emerald-800/40"></div>
 
             <!-- المجموعة الثانية: بطاقة رقم الجوال مع زر النسخ المستقل -->
-            <div class="bg-slate-50/90 border border-slate-200/80 rounded-2xl p-3.5 flex items-center justify-between gap-3">
+            <div class="bg-jarir-surface/90 border border-emerald-800/50 rounded-2xl p-3.5 flex items-center justify-between gap-3">
                 <div class="flex items-center gap-3 min-w-0">
-                    <div class="w-10 h-10 rounded-xl bg-jarir-dark/10 text-jarir-dark flex items-center justify-center shrink-0">
+                    <div class="w-10 h-10 rounded-xl bg-jarir-dark/40 border border-emerald-600/30 text-jarir-light flex items-center justify-center shrink-0">
                         <i class="fa-solid fa-mobile-screen-button text-lg"></i>
                     </div>
                     <div class="text-right truncate">
                         <span class="block text-[11px] font-medium text-slate-400">رقم الجوال المباشر</span>
-                        <span class="block text-sm sm:text-base font-bold text-slate-800 tracking-wide" dir="ltr">+966 58 300 0907</span>
+                        <span class="block text-sm sm:text-base font-bold text-white tracking-wide" dir="ltr">+966 58 300 0907</span>
                     </div>
                 </div>
-                <button type="button" onclick="copyToClipboard('+966583000907', 'تم نسخ رقم الجوال بنجاح')" class="shrink-0 flex items-center gap-1.5 bg-white hover:bg-jarir-dark text-slate-700 hover:text-white border border-slate-200 hover:border-jarir-dark text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-sm transition-all active:scale-95 cursor-pointer" title="نسخ رقم الجوال">
+                <button type="button" onclick="copyToClipboard('+966583000907', 'تم نسخ رقم الجوال بنجاح')" class="shrink-0 flex items-center gap-1.5 bg-jarir-card hover:bg-jarir-dark text-slate-200 hover:text-white border border-emerald-700/50 hover:border-jarir-light text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-sm transition-all active:scale-95 cursor-pointer" title="نسخ رقم الجوال">
                     <i class="fa-regular fa-copy"></i>
                     <span>نسخ</span>
                 </button>
             </div>
 
             <!-- المجموعة الثالثة: بطاقة البريد الإلكتروني المستقلة (إرسال + نسخ) -->
-            <div class="bg-slate-50/90 border border-slate-200/80 rounded-2xl p-3.5 flex items-center justify-between gap-3">
+            <div class="bg-jarir-surface/90 border border-emerald-800/50 rounded-2xl p-3.5 flex items-center justify-between gap-3">
                 <a href="mailto:alsapri@jarirbookstore.com" class="flex items-center gap-3 min-w-0 group flex-1" title="إرسال بريد إلكتروني">
-                    <div class="w-10 h-10 rounded-xl bg-jarir-accent/10 text-jarir-accent group-hover:bg-jarir-accent group-hover:text-white transition-colors flex items-center justify-center shrink-0">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-900/60 border border-emerald-600/30 text-emerald-300 group-hover:bg-jarir-dark group-hover:text-white transition-colors flex items-center justify-center shrink-0">
                         <i class="fa-solid fa-envelope text-base"></i>
                     </div>
                     <div class="text-right truncate">
                         <span class="block text-[11px] font-medium text-slate-400">البريد الإلكتروني (اضغط للمراسلة)</span>
-                        <span class="block text-xs sm:text-sm font-bold text-slate-800 group-hover:text-jarir-dark transition-colors truncate" dir="ltr">alsapri@jarirbookstore.com</span>
+                        <span class="block text-xs sm:text-sm font-bold text-white group-hover:text-jarir-light transition-colors truncate" dir="ltr">alsapri@jarirbookstore.com</span>
                     </div>
                 </a>
-                <button type="button" onclick="copyToClipboard('alsapri@jarirbookstore.com', 'تم نسخ البريد الإلكتروني بنجاح')" class="shrink-0 flex items-center gap-1.5 bg-white hover:bg-jarir-dark text-slate-700 hover:text-white border border-slate-200 hover:border-jarir-dark text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-sm transition-all active:scale-95 cursor-pointer" title="نسخ البريد الإلكتروني">
+                <button type="button" onclick="copyToClipboard('alsapri@jarirbookstore.com', 'تم نسخ البريد الإلكتروني بنجاح')" class="shrink-0 flex items-center gap-1.5 bg-jarir-card hover:bg-jarir-dark text-slate-200 hover:text-white border border-emerald-700/50 hover:border-jarir-light text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-sm transition-all active:scale-95 cursor-pointer" title="نسخ البريد الإلكتروني">
                     <i class="fa-regular fa-copy"></i>
                     <span>نسخ</span>
                 </button>
@@ -198,7 +201,7 @@
 
             <!-- زر حفظ جهة الاتصال (Download vCard .vcf) -->
             <div class="pt-1">
-                <button type="button" onclick="downloadVCard()" class="w-full flex items-center justify-center gap-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 px-5 rounded-2xl shadow-md transition-all duration-200 active:scale-[0.98] cursor-pointer">
+                <button type="button" onclick="downloadVCard()" class="w-full flex items-center justify-center gap-2.5 bg-gradient-to-l from-jarir-dark to-[#0a3822] hover:from-[#007a42] hover:to-jarir-dark border border-jarir-light/40 text-white font-bold py-3.5 px-5 rounded-2xl shadow-md transition-all duration-200 active:scale-[0.98] cursor-pointer">
                     <i class="fa-solid fa-address-card text-jarir-light text-lg"></i>
                     <span class="text-sm sm:text-base">حفظ جهة الاتصال في الهاتف (vCard)</span>
                 </button>
@@ -206,30 +209,30 @@
         </section>
 
         <!-- فاصل بارز بين البطاقة الشخصية وقسم الكتالوج -->
-        <div class="my-7 border-t-2 border-dashed border-slate-200/80 relative">
-            <span class="absolute left-1/2 -top-3 -translate-x-1/2 bg-white px-3 text-xs font-bold text-jarir-dark">
-                <i class="fa-solid fa-book-open ml-1 text-jarir-light"></i> كتالوج المنتجات
+        <div class="my-7 border-t-2 border-dashed border-emerald-800/50 relative">
+            <span class="absolute left-1/2 -top-3 -translate-x-1/2 bg-jarir-card px-3 text-xs font-bold text-jarir-light">
+                <i class="fa-solid fa-book-open ml-1 text-emerald-400"></i> كتالوج المنتجات
             </span>
         </div>
 
         <!-- 4. قسم الكتالوج التفاعلي داخل البطاقة -->
         <section class="px-6 pb-8">
-            <div class="bg-gradient-to-br from-[#F8FAF9] to-[#F1F6F3] border border-jarir-dark/15 rounded-2xl p-4 sm:p-5">
+            <div class="bg-gradient-to-br from-[#10261c] to-[#0a1a13] border border-emerald-800/50 rounded-2xl p-4 sm:p-5">
                 
                 <!-- عنوان قسم الكتالوج -->
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                     <div>
-                        <h2 class="text-base sm:text-lg font-extrabold text-jarir-dark leading-snug">
+                        <h2 class="text-base sm:text-lg font-extrabold text-white leading-snug">
                             دليل المستلزمات المدرسية والمكتبية 2026
                         </h2>
-                        <p class="text-[11px] font-medium text-slate-500 mt-0.5" dir="ltr">
+                        <p class="text-[11px] font-medium text-emerald-300/75 mt-0.5" dir="ltr">
                             Jarir Marketing Co. - School & Office Supplies Catalogue 2026
                         </p>
                     </div>
                     
                     <!-- زر استعراض / تحميل ملف الكتالوج الكامل PDF -->
-                    <a href="BTS_CATALOG_2026_v2_wo_RC_Bags.pdf.pdf" target="_blank" onclick="handlePdfClick(event)" class="inline-flex items-center justify-center gap-1.5 bg-white hover:bg-jarir-dark text-jarir-dark hover:text-white border border-jarir-dark/30 text-xs font-bold py-2 px-3 rounded-xl shadow-sm transition-all shrink-0">
-                        <i class="fa-solid fa-file-pdf text-jarir-accent"></i>
+                    <a href="BTS_CATALOG_2026_v2_wo_RC_Bags.pdf" target="_blank" onclick="handlePdfClick(event)" class="inline-flex items-center justify-center gap-1.5 bg-jarir-card hover:bg-jarir-dark text-jarir-light hover:text-white border border-emerald-600/40 text-xs font-bold py-2 px-3 rounded-xl shadow-sm transition-all shrink-0">
+                        <i class="fa-solid fa-file-pdf text-rose-400"></i>
                         <span>الكتالوج الكامل PDF</span>
                     </a>
                 </div>
@@ -241,10 +244,10 @@
                         id="catalogSearch" 
                         oninput="filterCatalog()" 
                         placeholder="ابحث باسم الصنف أو رقم الصنف (مثال: 461493 أو ورق تصوير)..." 
-                        class="w-full bg-white border border-slate-200 focus:border-jarir-dark focus:ring-2 focus:ring-jarir-dark/15 rounded-xl py-2.5 pr-10 pl-9 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-all"
+                        class="w-full bg-jarir-deep/90 border border-emerald-800/60 focus:border-jarir-light focus:ring-2 focus:ring-jarir-light/20 rounded-xl py-2.5 pr-10 pl-9 text-xs sm:text-sm text-white placeholder:text-slate-400 outline-none transition-all"
                     >
-                    <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <button type="button" id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs cursor-pointer">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-emerald-400/70 text-sm"></i>
+                    <button type="button" id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs cursor-pointer">
                         <i class="fa-solid fa-circle-xmark"></i>
                     </button>
                 </div>
@@ -255,7 +258,7 @@
                 </div>
 
                 <!-- عداد النتائج المعروضة -->
-                <div class="flex items-center justify-between text-[11px] text-slate-500 mb-2.5 px-1">
+                <div class="flex items-center justify-between text-[11px] text-slate-400 mb-2.5 px-1">
                     <span id="resultsCount">جاري تحميل الأصناف...</span>
                     <span>اطلب مباشرة عبر واتساب <i class="fa-brands fa-whatsapp text-[#25D366]"></i></span>
                 </div>
@@ -268,16 +271,16 @@
             </div>
         </section>
 
-        <!-- تذييل البطاقة -->
-        <footer class="bg-slate-50 border-t border-slate-100 py-4 px-6 text-center">
-            <p class="text-[11px] text-slate-400 font-medium">
-                © 2026 شركة جرير للتسويق (Jarir Marketing Co.) • جميع الحقوق محفوظة
-            </p>
+        <!-- تذييل البطاقة بحقوق VWebSite المختصرة -->
+        <footer class="bg-jarir-deep/80 border-t border-emerald-900/50 py-3.5 px-6 text-center">
+            <a href="https://github.com/VWebSite" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-emerald-400/80 hover:text-jarir-light transition-colors tracking-wide" dir="ltr">
+                © VWebSite
+            </a>
         </footer>
     </main>
 
     <!-- إشعار بصري منبثق (Toast Notification) -->
-    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden items-center gap-2.5 bg-slate-900 text-white text-xs sm:text-sm font-bold px-5 py-3 rounded-full shadow-xl border border-white/10">
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden items-center gap-2.5 bg-jarir-deep text-white text-xs sm:text-sm font-bold px-5 py-3 rounded-full shadow-xl border border-emerald-600/40">
         <i class="fa-solid fa-circle-check text-jarir-light text-base"></i>
         <span id="toastMessage">تم النسخ بنجاح</span>
     </div>
@@ -382,8 +385,8 @@
                         onclick="selectCategory('${cat}')"
                         class="shrink-0 text-xs font-bold px-3.5 py-2 rounded-xl border transition-all cursor-pointer ${
                             isActive 
-                            ? 'bg-jarir-dark text-white border-jarir-dark shadow-sm' 
-                            : 'bg-white text-slate-600 border-slate-200 hover:border-jarir-dark/40 hover:text-jarir-dark'
+                            ? 'bg-jarir-dark text-white border-jarir-light/60 shadow-sm' 
+                            : 'bg-jarir-deep/80 text-slate-300 border-emerald-800/50 hover:border-jarir-light/40 hover:text-jarir-light'
                         }"
                     >
                         ${cat}
@@ -437,9 +440,9 @@
 
             if (products.length === 0) {
                 listContainer.innerHTML = `
-                    <div class="bg-white border border-slate-200/80 rounded-xl p-6 text-center">
-                        <i class="fa-solid fa-box-open text-2xl text-slate-300 mb-2"></i>
-                        <p class="text-xs sm:text-sm font-bold text-slate-600">لم يتم العثور على أصناف مطابقة لبحثك</p>
+                    <div class="bg-jarir-deep/80 border border-emerald-800/40 rounded-xl p-6 text-center">
+                        <i class="fa-solid fa-box-open text-2xl text-emerald-600/60 mb-2"></i>
+                        <p class="text-xs sm:text-sm font-bold text-slate-200">لم يتم العثور على أصناف مطابقة لبحثك</p>
                         <p class="text-[11px] text-slate-400 mt-1">يمكنك التواصل مباشرة مع عارف الصبري للاستفسار عن أي صنف آخر في الكتالوج</p>
                     </div>
                 `;
@@ -452,20 +455,20 @@
                 const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
                 return `
-                    <div class="bg-white hover:border-jarir-dark/40 border border-slate-200/80 rounded-xl p-3 transition-all shadow-2xs flex items-center justify-between gap-3">
+                    <div class="bg-jarir-deep/85 hover:border-jarir-light/50 border border-emerald-800/40 rounded-xl p-3 transition-all shadow-2xs flex items-center justify-between gap-3">
                         <div class="min-w-0 flex-1 text-right">
                             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-                                <span class="inline-flex items-center gap-1 bg-jarir-dark/10 text-jarir-dark text-[10px] font-extrabold px-2 py-0.5 rounded-md" dir="ltr">
+                                <span class="inline-flex items-center gap-1 bg-jarir-dark/50 border border-emerald-600/30 text-jarir-light text-[10px] font-extrabold px-2 py-0.5 rounded-md" dir="ltr">
                                     #${item.id}
                                 </span>
                                 <span class="text-[10px] font-medium text-slate-400 truncate">
                                     ${item.category}
                                 </span>
                             </div>
-                            <h3 class="text-xs sm:text-sm font-bold text-slate-800 leading-snug">
+                            <h3 class="text-xs sm:text-sm font-bold text-slate-100 leading-snug">
                                 ${item.name}
                             </h3>
-                            <span class="inline-block text-[10px] text-slate-500 mt-0.5">
+                            <span class="inline-block text-[10px] text-slate-400 mt-0.5">
                                 وحدة التعبئة: ${item.unit}
                             </span>
                         </div>
@@ -474,7 +477,7 @@
                             href="${waLink}" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            class="shrink-0 inline-flex items-center gap-1.5 bg-[#25D366]/10 hover:bg-[#25D366] text-[#128C7E] hover:text-white font-bold text-xs py-2 px-3 rounded-xl transition-colors"
+                            class="shrink-0 inline-flex items-center gap-1.5 bg-[#25D366]/15 hover:bg-[#25D366] border border-[#25D366]/30 text-[#4ade80] hover:text-white font-bold text-xs py-2 px-3 rounded-xl transition-colors"
                             title="اطلب هذا الصنف عبر واتساب"
                         >
                             <i class="fa-brands fa-whatsapp text-sm"></i>
@@ -526,12 +529,12 @@
         }
 
         function downloadVCard() {
-            // بناء محتوى ملف vCard القياسي (الإصدار 3.0) بترميز UTF-8 لدعم اللغة العربية
+            // بناء محتوى ملف vCard القياسي (الإصدار 3.0) بترميز UTF-8 لدعم اللغة العربية والإنجليزية
             const vCardLines = [
                 "BEGIN:VCARD",
                 "VERSION:3.0",
                 "N;CHARSET=UTF-8:الصبري;عارف;;;",
-                "FN;CHARSET=UTF-8:عارف الصبري - شركة جرير للتسويق",
+                "FN;CHARSET=UTF-8:عارف الصبري (Aref Al-Sapri) - شركة جرير للتسويق",
                 "ORG;CHARSET=UTF-8:شركة جرير للتسويق (Jarir Marketing Co.)",
                 "TITLE;CHARSET=UTF-8:مندوب مبيعات",
                 "TEL;TYPE=CELL,VOICE:+966583000907",
