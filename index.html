@@ -83,6 +83,34 @@
             background: #64748b;
         }
 
+        /* أسهم تمرير أزرار الأقسام: تظهر فقط على الأجهزة التي تعمل بالماوس (الكمبيوتر) */
+        .cat-arrow {
+            display: none;
+            position: absolute;
+            top: calc(50% - 4px);
+            transform: translateY(-50%);
+            width: 26px;
+            height: 26px;
+            border-radius: 9999px;
+            align-items: center;
+            justify-content: center;
+            background: #252930;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #cbd5e1;
+            font-size: 10px;
+            cursor: pointer;
+            z-index: 5;
+            box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.7);
+            transition: background 0.15s, color 0.15s, opacity 0.15s;
+        }
+        .cat-arrow:hover { background: #323843; color: #fff; }
+        .cat-arrow-right { right: -6px; }
+        .cat-arrow-left { left: -6px; }
+        .cat-arrow.is-hidden { opacity: 0; pointer-events: none; }
+        @media (hover: hover) and (pointer: fine) {
+            .cat-arrow { display: flex; }
+        }
+
         /* حركة ظهور الإشعار (Toast) */
         @keyframes slideUp {
             from { transform: translate(-50%, 100%); opacity: 0; }
@@ -254,8 +282,16 @@
                 </div>
 
                 <!-- أزرار التصفية حسب الأقسام الرئيسية الـ 12 من الكتالوج -->
-                <div id="categoryFilters" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 mb-3">
-                    <!-- يتم توليد الأزرار ديناميكياً عبر JavaScript -->
+                <div class="relative">
+                    <button type="button" id="catArrowRight" class="cat-arrow cat-arrow-right is-hidden" onclick="scrollCategories(1)" aria-label="الأقسام السابقة">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <div id="categoryFilters" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 mb-3">
+                        <!-- يتم توليد الأزرار ديناميكياً عبر JavaScript -->
+                    </div>
+                    <button type="button" id="catArrowLeft" class="cat-arrow cat-arrow-left is-hidden" onclick="scrollCategories(-1)" aria-label="الأقسام التالية">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
                 </div>
 
                 <!-- عداد النتائج المعروضة -->
@@ -336,7 +372,28 @@
             document.getElementById("pdfLink").href = PDF_FILE;
             renderCategoryButtons();
             filterCatalog();
+            document.getElementById("categoryFilters").addEventListener("scroll", updateCategoryArrows, { passive: true });
+            window.addEventListener("resize", updateCategoryArrows);
+            window.addEventListener("load", updateCategoryArrows);
         });
+
+        // تمرير أزرار الأقسام بالأسهم (1 = نحو اليمين/البداية ، -1 = نحو اليسار/النهاية)
+        function scrollCategories(dir) {
+            const el = document.getElementById("categoryFilters");
+            el.scrollBy({ left: dir * 220, behavior: "smooth" });
+        }
+
+        // إخفاء السهم عند الوصول لبداية القائمة أو نهايتها
+        function updateCategoryArrows() {
+            const el = document.getElementById("categoryFilters");
+            const right = document.getElementById("catArrowRight");
+            const left = document.getElementById("catArrowLeft");
+            if (!el || !right || !left) return;
+            const max = el.scrollWidth - el.clientWidth;
+            const pos = Math.abs(el.scrollLeft);
+            right.classList.toggle("is-hidden", max <= 2 || pos <= 2);
+            left.classList.toggle("is-hidden", max <= 2 || pos >= max - 2);
+        }
 
         function renderCategoryButtons() {
             const container = document.getElementById("categoryFilters");
@@ -356,6 +413,7 @@
                     </button>
                 `;
             }).join("");
+            updateCategoryArrows();
         }
 
         function selectCategory(category) {
