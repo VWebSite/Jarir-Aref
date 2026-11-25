@@ -293,7 +293,6 @@
         //    كل صنف: [رقم الصنف, الاسم الإنجليزي, الاسم العربي, رقم الصفحة في الـ PDF, رقم القسم, ملف الصورة]
         // =========================================================================
         const PDF_FILE = "CATALOG.pdf";   // اسم ملف الـ PDF المرفوع بجانب الصفحة
-        const IMG_DIR = "images/";                                // مجلد صور المنتجات
         const PAGE_SIZE = 30;                                     // عدد النتائج في كل دفعة
         const whatsappNumber = "966583000907";
 
@@ -450,39 +449,27 @@
             const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
             const pdfLink = `${PDF_FILE}#page=${item.page}`;
 
-            const placeholder = `<i class="fa-solid fa-box-open text-lg text-slate-500"></i>`;
-            const thumb = item.img
-                ? `<img src="${IMG_DIR}${item.img}" alt="${esc(title)}" width="64" height="64" loading="lazy" decoding="async" class="w-full h-full object-contain" onerror="var p=this.parentElement;p.classList.remove('bg-white');p.classList.add('bg-slatecard-surface');this.replaceWith(Object.assign(document.createElement('i'),{className:'fa-solid fa-box-open text-lg text-slate-500'}));">`
-                : placeholder;
-            const thumbClass = item.img
-                ? "bg-white border-white/10"
-                : "bg-slatecard-surface border-white/10";
-
             return `
-                <div class="bg-slatecard-void/85 hover:border-slate-400/40 border border-white/10 rounded-xl p-3 transition-all shadow-2xs flex items-center gap-3">
-                    <div class="shrink-0 w-16 h-16 rounded-lg overflow-hidden border flex items-center justify-center ${thumbClass}">
-                        ${thumb}
-                    </div>
-
-                    <div class="min-w-0 flex-1 text-right">
-                        <div class="flex flex-wrap items-center gap-1.5 mb-1">
-                            <span class="inline-flex items-center gap-1 bg-slatecard-elevated border border-white/10 text-slate-200 text-[10px] font-extrabold px-2 py-0.5 rounded-md" dir="ltr">
+                <div class="bg-slatecard-void/85 hover:border-slate-400/40 border border-white/10 rounded-xl p-3 transition-all shadow-2xs">
+                    <div class="text-right">
+                        <div class="flex flex-wrap items-center gap-1.5 mb-1.5">
+                            <span class="inline-flex items-center bg-slatecard-elevated border border-white/10 text-slate-200 text-[10px] font-extrabold px-2 py-0.5 rounded-md whitespace-nowrap" dir="ltr">
                                 ${esc(item.id)}
                             </span>
-                            <span class="text-[10px] font-medium text-slate-400 truncate">
+                            <span class="text-[10px] font-medium text-slate-400">
                                 ${esc(item.category)}
                             </span>
                         </div>
-                        <h3 class="text-xs sm:text-sm font-bold text-slate-100 leading-snug">
+                        <h3 class="text-sm font-bold text-slate-100 leading-snug">
                             ${esc(title)}
                         </h3>
-                        ${subtitle ? `<p class="text-[11px] text-slate-400 leading-snug" dir="ltr" style="text-align:right">${esc(subtitle)}</p>` : ""}
-                        <span class="inline-block text-[10px] text-slate-400 mt-0.5">
+                        ${subtitle ? `<p class="text-[11px] text-slate-400 leading-snug mt-0.5" dir="ltr" style="text-align:right">${esc(subtitle)}</p>` : ""}
+                        <span class="inline-block text-[10px] text-slate-400 mt-1">
                             صفحة ${item.page} في الكتالوج
                         </span>
                     </div>
 
-                    <div class="shrink-0 flex flex-col gap-1.5">
+                    <div class="grid grid-cols-2 gap-2 mt-2.5">
                         <a 
                             href="${waLink}" 
                             target="_blank" 
